@@ -12,7 +12,7 @@ namespace Homework_with_string
         static async Task Main(string[] args)
         {
             //путь к файлу !!!ЕЩЕ ОДИН ПУТЬ УКАЗАН В МЕТОДЕ Task3!!!!!
-            var path = @"C:\Users\wladi\source\repos\Homework with string\Homework with string\";
+            var path = @"C:\Users\wladi\OneDrive\documents\GitHub\Homework_String\Homework with string\";
 
             //строка принимает в себя данные файла.
             var readText = await ReadFileAsync(path + "sample.txt");
@@ -155,10 +155,10 @@ namespace Homework_with_string
         public static void Task3(string readText, string[] parse)
         {
             //находим самую часую букву
-            char ch = default;
+            string str = default;
             int count = default;
             int x = default;
-            for (int i = 0; i < readText.Length; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 count = 1;
                 for (int j = 0; j < readText.Length; j++)
@@ -173,7 +173,7 @@ namespace Homework_with_string
                     if (readText[i]!= ' ' )
                     {
                         x = count;
-                        ch = readText[i];
+                        str = $"'{readText[i]}' - {x}\n";
                     }
                     
                 }
@@ -186,7 +186,7 @@ namespace Homework_with_string
             {
                 if (parse[i].Length > longestSentence.Length)
                 {
-                    longestSentence = $"{parse[i]} \n";
+                    longestSentence = $"{parse[i]}\n";
                 }
                 else if (parse[i].Length < shortestSentence.Length & parse[i].Length != 0)
                 {
@@ -195,12 +195,12 @@ namespace Homework_with_string
 
             }
             //3 заданиe запись в файл
-            using (FileStream fstream = new FileStream(@"C:\Users\wladi\source\repos\Homework with string\Homework with string\3task.txt", FileMode.Append))
+            using (FileStream fstream = new FileStream(@"C:\Users\wladi\OneDrive\documents\GitHub\Homework_String\Homework with string\3task.txt", FileMode.OpenOrCreate))
             {
                 // преобразуем строку в байты
                 byte[] arrayLongest = System.Text.Encoding.Default.GetBytes(longestSentence);
                 byte[] arrayShortest = System.Text.Encoding.Default.GetBytes(shortestSentence);
-                byte[] letter = System.Text.Encoding.Default.GetBytes(ch.ToString());
+                byte[] letter = System.Text.Encoding.Default.GetBytes(str);
 
                 // запись массива байтов в файл
                 fstream.Write(arrayLongest, 0, arrayLongest.Length);
