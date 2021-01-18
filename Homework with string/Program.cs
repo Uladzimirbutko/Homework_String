@@ -170,7 +170,7 @@ namespace Homework_with_string
                 count = 1;
                 for (int j = 0; j < readText.Length; j++)
                 {
-                    if (ch == readText[j])
+                    if (readText[i] == readText[j])
                     {
                         count++;
                     }
@@ -184,16 +184,16 @@ namespace Homework_with_string
 
             //ищем самое длинное предложение
             string longestSentence = "";
-            string shortestSentence = "                 ";
+            string shortestSentence = "          ";
             for (int i = 0; i < parse.Length; i++)
             {
                 if (parse[i].Length > longestSentence.Length)
                 {
-                    longestSentence = parse[i];
+                    longestSentence = $"{parse[i]} \n";
                 }
-                else if (parse[i].Length < shortestSentence.Length)
+                else if (parse[i].Length < shortestSentence.Length & parse[i].Length != 0)
                 {
-                    shortestSentence = parse[i];
+                    shortestSentence = $"{parse[i]}\n" ;
                 }
 
             }
@@ -203,12 +203,12 @@ namespace Homework_with_string
                 // преобразуем строку в байты
                 byte[] arrayLongest = System.Text.Encoding.Default.GetBytes(longestSentence);
                 byte[] arrayShortest = System.Text.Encoding.Default.GetBytes(shortestSentence);
-                byte[] letter = System.Text.Encoding.Default.GetBytes(ch.ToString());
+               // byte[] letter = System.Text.Encoding.Default.GetBytes(ch.ToString());
 
                 // запись массива байтов в файл
                 fstream.Write(arrayLongest, 0, arrayLongest.Length);
                 fstream.Write(arrayShortest, 0, arrayShortest.Length);
-                fstream.Write(letter, 0, letter.Length);
+                //fstream.Write(letter, 0, letter.Length);
             }
 
         }
