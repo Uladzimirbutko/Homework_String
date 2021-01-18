@@ -119,14 +119,7 @@ namespace Homework_with_string
         {
 
             string[] words = Regex.Split(text, "[\\d\\W]+",RegexOptions.Multiline);
-                
-                
-               // text.Split(new char[] {' ', '.', ',', '!', '?', ':', ';', '\n', '\r', '-', '(', ')', '{', '}', '[', ']','\''}, StringSplitOptions.RemoveEmptyEntries);
-
-            //for (int i = 0; i < words.Length; i++)
-            //{
-            //    words[i] = words[i].Trim();
-            //}
+            
 
             return words;
         }
@@ -177,8 +170,12 @@ namespace Homework_with_string
                 }
                 if (count > x)
                 {
-                    x = count;
-                    ch = readText[i];
+                    if (readText[i]!= ' ' )
+                    {
+                        x = count;
+                        ch = readText[i];
+                    }
+                    
                 }
             }
 
@@ -203,12 +200,12 @@ namespace Homework_with_string
                 // преобразуем строку в байты
                 byte[] arrayLongest = System.Text.Encoding.Default.GetBytes(longestSentence);
                 byte[] arrayShortest = System.Text.Encoding.Default.GetBytes(shortestSentence);
-               // byte[] letter = System.Text.Encoding.Default.GetBytes(ch.ToString());
+                byte[] letter = System.Text.Encoding.Default.GetBytes(ch.ToString());
 
                 // запись массива байтов в файл
                 fstream.Write(arrayLongest, 0, arrayLongest.Length);
                 fstream.Write(arrayShortest, 0, arrayShortest.Length);
-                //fstream.Write(letter, 0, letter.Length);
+                fstream.Write(letter, 0, letter.Length);
             }
 
         }
